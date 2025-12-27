@@ -202,10 +202,10 @@ img {
   font-size: 15px;
 }
 /* Fix for shields.io badges having unwanted borders/radius */
-.pub-links img {
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+img.github-badge {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   vertical-align: middle;
 }
 
