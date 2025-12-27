@@ -204,9 +204,10 @@ img {
 /* Fix for shields.io badges having unwanted borders/radius */
 img.github-badge {
   border: none !important;
-  border-radius: 0 !important;
+  border-radius: 3px !important;
   box-shadow: none !important;
   vertical-align: middle;
+  height: auto;
 }
 
 .meta{
