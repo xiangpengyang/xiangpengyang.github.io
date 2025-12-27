@@ -201,6 +201,14 @@ img {
   font-weight: 600;
   font-size: 15px;
 }
+/* Fix for shields.io badges having unwanted borders/radius */
+.pub-links img {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  vertical-align: middle;
+}
+
 .meta{
   color: #4a5365;
   font-size: 15px;
