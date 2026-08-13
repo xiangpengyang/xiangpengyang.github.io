@@ -191,6 +191,18 @@ img {
   object-fit: cover;
   background: #0f172a;
 }
+.z-multishot-media {
+  flex: 0 0 250px;
+  width: 250px;
+  max-width: 250px;
+  overflow: hidden;
+}
+.z-multishot-media video {
+  width: 250px !important;
+  height: 140px !important;
+  max-width: 250px !important;
+  object-fit: cover;
+}
 .pub-content {
   flex: 1;
 }
@@ -271,5 +283,11 @@ footer {
   .pub-image img,
   .pub-image video {
     width: 100%;
+  }
+
+  .z-multishot-media {
+    flex-basis: 250px;
+    width: 250px;
+    max-width: 100%;
   }
 }
