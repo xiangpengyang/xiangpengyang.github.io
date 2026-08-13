@@ -183,6 +183,14 @@ img {
   border: none;
   box-shadow: none;
 }
+.pub-image video {
+  display: block;
+  width: 250px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #0f172a;
+}
 .pub-content {
   flex: 1;
 }
@@ -200,6 +208,16 @@ img {
   margin-right: 10px;
   font-weight: 600;
   font-size: 15px;
+}
+.highlight-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #a61b1b;
+  background: #fff1f1;
+  font-size: 13px;
+  font-weight: 800;
 }
 /* Fix for shields.io badges having unwanted borders/radius */
 img.github-badge {
@@ -238,4 +256,20 @@ footer {
   margin-top: 24px;
   text-align: center;
   color: #4a5365;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 8px 16px 24px;
+  }
+
+  .pub-item {
+    flex-direction: column;
+  }
+
+  .pub-image,
+  .pub-image img,
+  .pub-image video {
+    width: 100%;
+  }
 }
