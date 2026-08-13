@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="css/style.css?v=20260814-2" rel="stylesheet" type="text/css">
+    <link href="css/style.css?v=20260814-3" rel="stylesheet" type="text/css">
     <title>Xiangpeng Yang | Home</title>
   </head>
   <body id="top">
@@ -16,7 +16,21 @@
 
     <div class="wrapper">
       <div class="section header-bar" id="about">
-        <img src="images/yxp.jpg" class="avatar" alt="Xiangpeng Yang portrait">
+        <figure class="avatar-flip-wrap">
+          <button class="avatar-flip" id="avatar-flip" type="button" aria-label="Show Winter Me" aria-pressed="false">
+            <span class="avatar-flip-inner">
+              <span class="avatar-face avatar-front">
+                <img src="images/yxp.jpg" class="avatar" alt="Xiangpeng Yang in summer">
+                <span class="avatar-season">Summer Me</span>
+              </span>
+              <span class="avatar-face avatar-back">
+                <img src="images/yxp-winter.jpg" class="avatar" alt="Xiangpeng Yang in winter">
+                <span class="avatar-season">Winter Me</span>
+              </span>
+            </span>
+          </button>
+          <figcaption class="photo-credit">Click to flip · Photo credited by my lovely gf <a href="https://www.linkedin.com/in/yiyuan-yang/" target="_blank" rel="noopener noreferrer">Yiyuan Yang</a></figcaption>
+        </figure>
         <div class="profile-meta">
           <h1>Xiangpeng Yang</h1>
           <div class="meta-line">Ph.D. Student, University of Technology Sydney (UTS)</div>
@@ -258,5 +272,15 @@
         &copy; 2026 Xiangpeng Yang
       </div>
     </footer>
+    <script>
+      const avatarFlip = document.getElementById('avatar-flip');
+      if (avatarFlip) {
+        avatarFlip.addEventListener('click', () => {
+          const isFlipped = avatarFlip.classList.toggle('is-flipped');
+          avatarFlip.setAttribute('aria-pressed', String(isFlipped));
+          avatarFlip.setAttribute('aria-label', isFlipped ? 'Show Summer Me' : 'Show Winter Me');
+        });
+      }
+    </script>
   </body>
 </html>
