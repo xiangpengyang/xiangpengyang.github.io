@@ -439,6 +439,97 @@ img.github-badge {
   line-height: 1.5;
 }
 
+.experience-timeline {
+  margin-top: 18px;
+}
+.experience-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 28px;
+  margin-left: 22px;
+  padding: 0 0 28px 34px;
+  border-left: 3px solid #4b8df8;
+}
+.experience-item::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: -12px;
+  width: 17px;
+  height: 17px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #4b8df8;
+  box-shadow: 0 0 0 2px #4b8df8;
+}
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+.experience-org {
+  text-align: center;
+}
+.experience-logo-card {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border: 1px solid #eef1f5;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #26364a;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+.experience-logo-card:hover {
+  text-decoration: none;
+}
+.experience-logo-card img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.experience-logo-card span {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.experience-date {
+  margin-top: 9px;
+  color: #26364a;
+  font-size: 14px;
+  font-weight: 700;
+}
+.experience-location {
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 13px;
+}
+.experience-details {
+  min-width: 0;
+  padding: 4px 0 4px 26px;
+  border-left: 3px solid #d7dce4;
+}
+.experience-details h3 {
+  margin: 0 0 8px;
+  color: #26364a;
+  font-size: 20px;
+  line-height: 1.25;
+}
+.experience-details p {
+  margin: 0;
+  color: #5f6b7b;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.experience-details a {
+  font-weight: 600;
+}
+
 footer {
   clear: both;
   background-color: #ffffff;
@@ -475,5 +566,26 @@ footer {
     flex-basis: 250px;
     width: 250px;
     max-width: 100%;
+  }
+
+  .experience-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-left: 12px;
+    padding-left: 26px;
+  }
+
+  .experience-org {
+    text-align: left;
+  }
+
+  .experience-logo-card {
+    max-width: 240px;
+  }
+
+  .experience-details {
+    padding: 14px 0 0;
+    border-top: 2px solid #d7dce4;
+    border-left: 0;
   }
 }
