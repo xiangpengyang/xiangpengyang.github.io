@@ -531,7 +531,7 @@ img.github-badge {
 }
 
 .visitor-map-section {
-  max-width: 800px;
+  max-width: 460px;
   margin: 20px auto;
   overflow: hidden;
 }
@@ -540,7 +540,7 @@ img.github-badge {
 }
 .visitor-map-widget {
   width: 100%;
-  max-width: 760px;
+  max-width: 420px;
   margin: 0 auto;
   overflow: hidden;
   text-align: center;
@@ -548,7 +548,7 @@ img.github-badge {
 .visitor-map-widget #mapmyvisitors-widget {
   display: block !important;
   width: 100% !important;
-  max-width: 760px !important;
+  max-width: 420px !important;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 10px;
