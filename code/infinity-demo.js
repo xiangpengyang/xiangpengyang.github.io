@@ -38,8 +38,15 @@
     activeShot = index;
     segments.forEach((segment, i) => segment.classList.toggle('is-active', i === index));
     const shot = shots[index];
-    if (shotLabel) shotLabel.textContent = `SHOT ${String(shot.index ?? index + 1).padStart(2, '0')} · ${stamp(shot.start)}–${stamp(shot.end)}`;
-    if (prompt) prompt.textContent = clean(shot.prompt_en || shot.prompt_zh);
+    if (shotLabel) {
+      const number = String(shot.index ?? index + 1).padStart(2, '0');
+      shotLabel.textContent = `S${number}`;
+      shotLabel.title = `Shot ${number} · ${stamp(shot.start)}–${stamp(shot.end)}`;
+    }
+    if (prompt) {
+      prompt.textContent = clean(shot.prompt_en || shot.prompt_zh);
+      prompt.title = prompt.textContent;
+    }
   };
 
   const pausePreview = () => {
@@ -61,14 +68,12 @@
   // Drive automatic playback here so native pause and sound choices remain intact.
   preview.autoplay = false;
   preview.addEventListener('play', () => {
-    trigger.classList.remove('is-paused');
     if (!managedPlay) {
       wantsPlayback = true;
       userStarted = true;
     }
   });
   preview.addEventListener('pause', () => {
-    trigger.classList.add('is-paused');
     if (managedPauses > 0) managedPauses -= 1;
     else wantsPlayback = false;
   });
@@ -100,7 +105,6 @@
     if (resumeAfterModal) syncPlayback();
     resumeAfterModal = false;
   });
-  trigger.classList.toggle('is-paused', preview.paused);
   syncTimeline();
   syncPlayback();
 })();

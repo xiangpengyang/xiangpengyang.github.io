@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css?v=20261101-demo" rel="stylesheet" type="text/css">
     <link href="css/infinity-viewer.css" rel="stylesheet">
-    <link href="css/infinity-demo.css?v=overlay" rel="stylesheet">
+    <link href="css/infinity-demo.css?v=caption" rel="stylesheet">
     <title>Xiangpeng Yang | Home</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
@@ -114,13 +114,15 @@
           <li class="pub-item">
             <div class="pub-image infinity-shots-media has-controls">
               <div id="infinity-demo" class="infinity-demo">
-                <video class="infinity-demo-video" src="images/infinity-demo.mp4" poster="images/infinity-demo.jpg" controls muted loop playsinline preload="metadata" aria-label="A very unexpected day — Infinity Shots audio-video demo"></video>
-                <span class="infinity-demo-overlay" aria-hidden="true">
+                <div class="infinity-demo-frame">
+                  <video class="infinity-demo-video" src="images/infinity-demo.mp4" poster="images/infinity-demo.jpg" controls muted loop playsinline preload="metadata" aria-label="A very unexpected day — Infinity Shots audio-video demo"></video>
+                  <span class="infinity-demo-timeline" aria-hidden="true"></span>
+                  <button class="infinity-demo-expand" type="button" aria-haspopup="dialog" aria-label="Expand video and shot prompts" title="Expand video and shot prompts">↗</button>
+                </div>
+                <span class="infinity-demo-caption" aria-hidden="true">
                   <span class="infinity-demo-shot"></span>
                   <span class="infinity-demo-prompt"></span>
                 </span>
-                <span class="infinity-demo-timeline" aria-hidden="true"></span>
-                <button class="infinity-demo-expand" type="button" aria-haspopup="dialog" aria-label="Expand video and shot prompts" title="Expand video and shot prompts">↗</button>
               </div>
             </div>
             <div class="pub-content">
@@ -359,7 +361,7 @@
     </div>
     <script src="code/infinity-viewer.js" defer></script>
     <script src="code/infinity-demo-data.js" defer></script>
-    <script src="code/infinity-demo.js?v=overlay" defer></script>
+    <script src="code/infinity-demo.js?v=caption" defer></script>
     <script>
       const avatarFlip = document.getElementById('avatar-flip');
       if (avatarFlip) {

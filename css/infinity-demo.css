@@ -1,9 +1,8 @@
-/* Keep the inline demonstration at the same 16:9 ratio as its video. */
+/* The video stays 16:9; its one-line prompt sits outside the image. */
 #infinity-demo {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 12px;
   background: #101112;
@@ -12,6 +11,12 @@
   font-family: Arial, "PingFang SC", sans-serif;
   cursor: auto;
   box-shadow: 0 5px 16px #17251d14;
+}
+#infinity-demo .infinity-demo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 #infinity-demo .infinity-demo-video {
   position: absolute;
@@ -24,42 +29,33 @@
   background: #171717;
   box-shadow: none;
 }
-#infinity-demo .infinity-demo-overlay {
-  position: absolute;
-  left: 7px;
-  right: 7px;
-  bottom: 8px;
-  z-index: 1;
-  padding: 5px 6px;
-  border-left: 1px solid #f29d7e;
-  border-radius: 0 3px 3px 0;
-  background: linear-gradient(90deg, #070908d9, #070908a8);
-  text-shadow: 0 1px 3px #000b;
-  pointer-events: none;
-  transition: bottom .15s ease 2.5s;
+#infinity-demo .infinity-demo-caption {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 7px;
+  box-sizing: border-box;
+  border-top: 1px solid #ffffff12;
+  background: #101112;
+  line-height: 1;
 }
-#infinity-demo:hover .infinity-demo-overlay,
-#infinity-demo:focus-within .infinity-demo-overlay,
-#infinity-demo.is-paused .infinity-demo-overlay { bottom: 52px; transition-delay: 0s; }
 #infinity-demo .infinity-demo-shot {
-  display: block;
-  margin-bottom: 2px;
+  flex: 0 0 auto;
   color: #f29d7e;
   font-size: 7px;
   font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: .4px;
   font-variant-numeric: tabular-nums;
 }
 #infinity-demo .infinity-demo-prompt {
-  display: -webkit-box;
+  display: block;
+  min-width: 0;
   overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #ddd;
   font-size: 8px;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
+  line-height: 1.2;
 }
 #infinity-demo .infinity-demo-timeline {
   position: absolute;
@@ -98,5 +94,3 @@
 }
 #infinity-demo .infinity-demo-expand:hover { background: #101112; color: #f29d7e; }
 #infinity-demo .infinity-demo-expand:focus-visible { outline: 2px solid #f29d7e; outline-offset: 2px; }
-@media (max-width: 720px), (hover: none) { #infinity-demo .infinity-demo-overlay { bottom: 52px; } }
-@media (prefers-reduced-motion: reduce) { #infinity-demo .infinity-demo-overlay { transition: none; } }
