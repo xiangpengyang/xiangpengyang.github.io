@@ -9,7 +9,7 @@
 #infinity-demo .infinity-demo-timeline{position:absolute;z-index:2;top:0;left:0;right:0;display:flex;gap:2px;height:2px;pointer-events:none}
 #infinity-demo .infinity-demo-segment{display:block;flex-basis:0;min-width:0;background:#ffffff45}
 #infinity-demo .infinity-demo-segment.is-active{background:#f29d7e}
-#infinity-demo .infinity-demo-expand{position:absolute;z-index:3;top:6px;right:6px;display:grid;place-items:center;width:20px;height:20px;padding:0;border:1px solid #ffffff55;border-radius:50%;background:#10111275;color:#fff;font:13px/1 Arial,sans-serif;cursor:pointer}
+#infinity-demo .infinity-demo-expand{position:absolute;z-index:3;top:6px;right:6px;display:grid;place-items:center;width:20px;height:20px;padding:0;border:1px solid #ffffff55;border-radius:50%;background:#10111275;color:#fff;font:13px/1 Arial,sans-serif;cursor:pointer;text-decoration:none}
 #infinity-demo .infinity-demo-expand:hover{background:#101112;color:#f29d7e}
 #infinity-demo .infinity-demo-controls{position:absolute;z-index:3;left:5px;right:5px;bottom:3px;display:flex;align-items:center;gap:4px;height:19px}
 #infinity-demo .infinity-demo-control{display:grid;place-items:center;flex:none;width:18px;height:19px;padding:0;border:0;border-radius:3px;background:transparent;color:#fff;cursor:pointer}
@@ -24,7 +24,7 @@
 #infinity-demo .infinity-demo-seek::-moz-range-progress{height:2px;background:#fff}
 #infinity-demo .infinity-demo-seek::-moz-range-thumb{width:5px;height:5px;border:0;border-radius:50%;background:#fff}
 #infinity-demo .infinity-demo-seek:disabled{opacity:.45;cursor:wait}
-#infinity-demo button:focus-visible,#infinity-demo input:focus-visible{outline:2px solid #f29d7e;outline-offset:1px}
+#infinity-demo button:focus-visible,#infinity-demo a:focus-visible,#infinity-demo input:focus-visible{outline:2px solid #f29d7e;outline-offset:1px}
 #infinity-demo [hidden]{display:none!important}
 #infinity-demo:not(.has-custom-controls) .infinity-demo-caption{display:none}
 #infinity-demo:fullscreen{width:100vw;height:100dvh;border-radius:0;background:#000}

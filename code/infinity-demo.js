@@ -6,7 +6,6 @@
 
   const preview = trigger.querySelector('.infinity-demo-video');
   const frame = trigger.querySelector('.infinity-demo-frame');
-  const expand = trigger.querySelector('.infinity-demo-expand');
   const timeline = trigger.querySelector('.infinity-demo-timeline');
   const shotLabel = trigger.querySelector('.infinity-demo-shot');
   const prompt = trigger.querySelector('.infinity-demo-prompt');
@@ -168,10 +167,6 @@
       window.InfinityViewer.open(demo, { startTime: preview.currentTime || 0 });
     } finally { opening = false; if (!dialog?.open) syncPlayback(); }
   }
-  expand?.addEventListener('click', event => {
-    event.stopPropagation();
-    openExpanded();
-  });
   dialog?.addEventListener('close', () => { if (resumeAfterModal) syncPlayback(); resumeAfterModal = false; });
   metadata(); syncControls();
   preview.controls = false;
