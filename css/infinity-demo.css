@@ -1,0 +1,74 @@
+/* The featured film stays compact in the publication list. */
+#infinity-demo {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #292c2b;
+  border-radius: 12px;
+  background: #101112;
+  color: #f5f1e8;
+  text-align: left;
+  font-family: Arial, "PingFang SC", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 5px 16px #17251d14;
+}
+#infinity-demo:focus-visible { outline: 3px solid #007d51; outline-offset: 4px; }
+#infinity-demo .infinity-demo-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 0;
+  object-fit: cover;
+  background: #171717;
+  pointer-events: none;
+  box-shadow: none;
+}
+#infinity-demo .infinity-demo-caption {
+  display: block;
+  margin: 10px 11px 0;
+  padding-left: 8px;
+  border-left: 2px solid #f29d7e;
+  pointer-events: none;
+}
+#infinity-demo .infinity-demo-shot {
+  display: block;
+  margin-bottom: 4px;
+  color: #f29d7e;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .55px;
+  font-variant-numeric: tabular-nums;
+}
+#infinity-demo .infinity-demo-prompt {
+  display: -webkit-box;
+  height: 43px;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #e3e5df;
+  font-size: 10px;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+}
+#infinity-demo .infinity-demo-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 10px 11px;
+  color: #f5f1e8;
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+#infinity-demo .infinity-demo-action > span { color: #f29d7e; font-size: 15px; }
+#infinity-demo:hover .infinity-demo-action { color: #f29d7e; }
+@media (max-width: 720px) {
+  #infinity-demo .infinity-demo-caption { margin: 12px 14px 0; }
+  #infinity-demo .infinity-demo-shot { font-size: 10px; }
+  #infinity-demo .infinity-demo-prompt { font-size: 11px; height: 47px; }
+  #infinity-demo .infinity-demo-action { padding: 12px 14px; font-size: 11px; }
+}

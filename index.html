@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css?v=20261101-infinity" rel="stylesheet" type="text/css">
+    <link href="css/style.css?v=20261101-demo" rel="stylesheet" type="text/css">
+    <link href="css/infinity-viewer.css" rel="stylesheet">
+    <link href="css/infinity-demo.css" rel="stylesheet">
     <title>Xiangpeng Yang | Home</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
@@ -111,26 +113,17 @@
         <ul class="pub-list">
           <li class="pub-item">
             <div class="pub-image infinity-shots-media">
-              <a class="infinity-shots-cover" href="https://infinity-shots.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Infinity Shots: explore 27 multi-shot videos and their prompts">
-                <span class="infinity-shots-mosaic" aria-hidden="true">
-                  <img src="images/infinity-shots-01.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-02.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-03.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-04.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-05.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-06.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-07.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-08.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-09.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-10.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-11.jpg" alt="" loading="lazy">
-                  <img src="images/infinity-shots-12.jpg" alt="" loading="lazy">
+              <button id="infinity-demo" class="infinity-demo" type="button" aria-haspopup="dialog" aria-label="Watch A very unexpected day with synchronized shot prompts">
+                <video class="infinity-demo-video" src="images/infinity-demo.mp4" poster="images/infinity-demo.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                <span class="infinity-demo-caption" aria-hidden="true">
+                  <span class="infinity-demo-shot">SHOT 01 · 0:00–0:02</span>
+                  <span class="infinity-demo-prompt">A very unexpected day · Comedy · 19 shots</span>
                 </span>
-                <span class="infinity-shots-cover-label"><span class="infinity-shots-wordmark">Infinity <em>Shots</em><span aria-hidden="true"> ∞</span></span><span class="infinity-shots-cover-caption">27 films · 14 genres <span aria-hidden="true">↗</span></span></span>
-              </a>
+                <span class="infinity-demo-action">Watch with shot prompts <span aria-hidden="true">↗</span></span>
+              </button>
             </div>
             <div class="pub-content">
-              <div class="pub-title">Infinity Shots: Chunk-wise Learning for Infinite Multi-Shot Video Generation</div>
+              <div class="pub-title">Infinity Shots: Chunk-wise Learning for Infinite Multi-Shot Audio-Video Generation</div>
               <div class="meta"><strong>Xiangpeng Yang</strong> · University of Technology Sydney (UTS)</div>
               <div class="meta" style="margin-bottom: 6px;"><strong>Research Project</strong>, 2026</div>
               <div class="meta" style="margin-bottom: 12px; font-weight: 500;"><strong>TL;DR</strong>: Chunk-wise learning for minute-long multi-shot video and audio generation, with 27 demos across 14 scene categories.</div>
@@ -363,6 +356,9 @@
       <img class="modal-content" id="modal-image" alt="" hidden>
       <video class="modal-content" id="modal-video" controls loop muted playsinline hidden></video>
     </div>
+    <script src="code/infinity-viewer.js" defer></script>
+    <script src="code/infinity-demo-data.js" defer></script>
+    <script src="code/infinity-demo.js" defer></script>
     <script>
       const avatarFlip = document.getElementById('avatar-flip');
       if (avatarFlip) {
@@ -383,7 +379,7 @@
         modalVideo.removeAttribute('src');
         modalImage.removeAttribute('src');
       };
-      document.querySelectorAll('.pub-image').forEach((thumb) => {
+      document.querySelectorAll('.pub-image:not(.infinity-shots-media)').forEach((thumb) => {
         const media = thumb.querySelector('img, video');
         if (!media) return;
         // videos with their own controls keep normal click behaviour
