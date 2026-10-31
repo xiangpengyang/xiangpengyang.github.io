@@ -1,56 +1,102 @@
-/* The featured film stays compact in the publication list. */
+/* Keep the inline demonstration at the same 16:9 ratio as its video. */
 #infinity-demo {
+  position: relative;
   display: block;
   width: 100%;
-  padding: 0;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  border: 1px solid #292c2b;
   border-radius: 12px;
   background: #101112;
   color: #f5f1e8;
   text-align: left;
   font-family: Arial, "PingFang SC", sans-serif;
-  cursor: pointer;
+  cursor: auto;
   box-shadow: 0 5px 16px #17251d14;
 }
-#infinity-demo:focus-visible { outline: 3px solid #007d51; outline-offset: 4px; }
 #infinity-demo .infinity-demo-video {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
+  height: 100%;
   border-radius: 0;
-  object-fit: cover;
+  object-fit: contain;
   background: #171717;
-  pointer-events: none;
   box-shadow: none;
 }
+#infinity-demo .infinity-demo-overlay {
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  bottom: 8px;
+  z-index: 1;
+  padding: 5px 6px;
+  border-left: 1px solid #f29d7e;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, #070908d9, #070908a8);
+  text-shadow: 0 1px 3px #000b;
+  pointer-events: none;
+  transition: bottom .15s ease 2.5s;
+}
+#infinity-demo:hover .infinity-demo-overlay,
+#infinity-demo:focus-within .infinity-demo-overlay,
+#infinity-demo.is-paused .infinity-demo-overlay { bottom: 52px; transition-delay: 0s; }
+#infinity-demo .infinity-demo-shot {
+  display: block;
+  margin-bottom: 2px;
+  color: #f29d7e;
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .4px;
+  font-variant-numeric: tabular-nums;
+}
+#infinity-demo .infinity-demo-prompt {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #fff;
+  font-size: 8px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
 #infinity-demo .infinity-demo-timeline {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 2px;
-  height: 4px;
-  margin: 6px 9px 0;
+  height: 3px;
   pointer-events: none;
 }
 #infinity-demo .infinity-demo-segment {
   display: block;
   flex-basis: 0;
   min-width: 0;
-  background: #ffffff38;
+  background: #ffffff50;
 }
 #infinity-demo .infinity-demo-segment.is-active { background: #f29d7e; }
-#infinity-demo .infinity-demo-action {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  min-height: 28px;
-  box-sizing: border-box;
-  padding: 5px 10px;
-  color: #f5f1e8;
-  font-size: 10px;
-  line-height: 1.4;
-  font-weight: 600;
+#infinity-demo .infinity-demo-expand {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: 1px solid #ffffff70;
+  border-radius: 50%;
+  background: #101112b8;
+  color: #fff;
+  font: 17px/1 Arial, sans-serif;
+  cursor: pointer;
 }
-#infinity-demo .infinity-demo-action > span:last-child { color: #f29d7e; font-size: 15px; line-height: 1; }
-#infinity-demo:hover .infinity-demo-action { color: #f29d7e; }
+#infinity-demo .infinity-demo-expand:hover { background: #101112; color: #f29d7e; }
+#infinity-demo .infinity-demo-expand:focus-visible { outline: 2px solid #f29d7e; outline-offset: 2px; }
+@media (max-width: 720px), (hover: none) { #infinity-demo .infinity-demo-overlay { bottom: 52px; } }
+@media (prefers-reduced-motion: reduce) { #infinity-demo .infinity-demo-overlay { transition: none; } }

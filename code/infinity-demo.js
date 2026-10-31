@@ -5,13 +5,24 @@
   if (!trigger || !demo || !window.InfinityViewer) return;
 
   const preview = trigger.querySelector('.infinity-demo-video');
+  const expand = trigger.querySelector('.infinity-demo-expand');
   const timeline = trigger.querySelector('.infinity-demo-timeline');
+  const shotLabel = trigger.querySelector('.infinity-demo-shot');
+  const prompt = trigger.querySelector('.infinity-demo-prompt');
   const dialog = document.querySelector('.iv-dialog');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const shots = demo.shots || [];
   let activeShot = -1;
   let inView = true;
   let opening = false;
+  let wantsPlayback = !motion.matches;
+  let userStarted = false;
+  let managedPauses = 0;
+  let managedPlay = false;
+  let resumeAfterModal = false;
+
+  const stamp = time => `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}`;
+  const clean = text => String(text || '').replace(/^\s*<(?:shot|chunk)_\d+>\s*<[^>]+>\s*/, '');
 
   const segments = shots.map(shot => {
     const segment = document.createElement('span');
@@ -26,26 +37,46 @@
     if (index < 0 || index === activeShot) return;
     activeShot = index;
     segments.forEach((segment, i) => segment.classList.toggle('is-active', i === index));
+    const shot = shots[index];
+    if (shotLabel) shotLabel.textContent = `SHOT ${String(shot.index ?? index + 1).padStart(2, '0')} · ${stamp(shot.start)}–${stamp(shot.end)}`;
+    if (prompt) prompt.textContent = clean(shot.prompt_en || shot.prompt_zh);
   };
 
+  const pausePreview = () => {
+    if (preview.paused) return;
+    managedPauses += 1;
+    preview.pause();
+  };
   const syncPlayback = () => {
-    if (motion.matches || document.hidden || !inView || opening || dialog?.open) {
-      preview.pause();
+    if ((motion.matches && !userStarted) || document.hidden || !inView || opening || dialog?.open) {
+      pausePreview();
       return;
     }
-    preview.play().catch(() => {});
+    if (!wantsPlayback || !preview.paused || managedPlay) return;
+    managedPlay = true;
+    preview.play().catch(() => {}).finally(() => { managedPlay = false; });
   };
 
   preview.muted = true;
-  preview.autoplay = !motion.matches;
+  // Drive automatic playback here so native pause and sound choices remain intact.
+  preview.autoplay = false;
+  preview.addEventListener('play', () => {
+    trigger.classList.remove('is-paused');
+    if (!managedPlay) {
+      wantsPlayback = true;
+      userStarted = true;
+    }
+  });
+  preview.addEventListener('pause', () => {
+    trigger.classList.add('is-paused');
+    if (managedPauses > 0) managedPauses -= 1;
+    else wantsPlayback = false;
+  });
   preview.addEventListener('timeupdate', syncTimeline);
   preview.addEventListener('seeked', syncTimeline);
   preview.addEventListener('loadedmetadata', syncTimeline);
   document.addEventListener('visibilitychange', syncPlayback);
-  motion.addEventListener('change', () => {
-    preview.autoplay = !motion.matches;
-    syncPlayback();
-  });
+  motion.addEventListener('change', syncPlayback);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
       inView = entries[0].isIntersecting;
@@ -53,10 +84,11 @@
     }, { threshold: 0.15 }).observe(trigger);
   }
 
-  trigger.addEventListener('click', event => {
+  expand?.addEventListener('click', event => {
     event.stopPropagation();
+    resumeAfterModal = !preview.paused;
     opening = true;
-    preview.pause();
+    pausePreview();
     try {
       window.InfinityViewer.open(demo, { startTime: preview.currentTime || 0 });
     } finally {
@@ -64,7 +96,11 @@
       if (!dialog?.open) syncPlayback();
     }
   });
-  dialog?.addEventListener('close', syncPlayback);
+  dialog?.addEventListener('close', () => {
+    if (resumeAfterModal) syncPlayback();
+    resumeAfterModal = false;
+  });
+  trigger.classList.toggle('is-paused', preview.paused);
   syncTimeline();
   syncPlayback();
 })();
