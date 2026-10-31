@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css?v=20261101-demo" rel="stylesheet" type="text/css">
     <link href="css/infinity-viewer.css" rel="stylesheet">
-    <link href="css/infinity-demo.css" rel="stylesheet">
+    <link href="css/infinity-demo.css?v=compact" rel="stylesheet">
     <title>Xiangpeng Yang | Home</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
@@ -113,13 +113,10 @@
         <ul class="pub-list">
           <li class="pub-item">
             <div class="pub-image infinity-shots-media">
-              <button id="infinity-demo" class="infinity-demo" type="button" aria-haspopup="dialog" aria-label="Watch A very unexpected day with synchronized shot prompts">
+              <button id="infinity-demo" class="infinity-demo" type="button" aria-haspopup="dialog" aria-label="Watch A very unexpected day with sound and shot prompts">
                 <video class="infinity-demo-video" src="images/infinity-demo.mp4" poster="images/infinity-demo.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
-                <span class="infinity-demo-caption" aria-hidden="true">
-                  <span class="infinity-demo-shot">SHOT 01 · 0:00–0:02</span>
-                  <span class="infinity-demo-prompt">A very unexpected day · Comedy · 19 shots</span>
-                </span>
-                <span class="infinity-demo-action">Watch with shot prompts <span aria-hidden="true">↗</span></span>
+                <span class="infinity-demo-timeline" aria-hidden="true"></span>
+                <span class="infinity-demo-action"><span>▶ Watch with sound</span><span aria-hidden="true">↗</span></span>
               </button>
             </div>
             <div class="pub-content">
@@ -358,7 +355,7 @@
     </div>
     <script src="code/infinity-viewer.js" defer></script>
     <script src="code/infinity-demo-data.js" defer></script>
-    <script src="code/infinity-demo.js" defer></script>
+    <script src="code/infinity-demo.js?v=compact" defer></script>
     <script>
       const avatarFlip = document.getElementById('avatar-flip');
       if (avatarFlip) {

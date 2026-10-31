@@ -5,8 +5,7 @@
   if (!trigger || !demo || !window.InfinityViewer) return;
 
   const preview = trigger.querySelector('.infinity-demo-video');
-  const shotLabel = trigger.querySelector('.infinity-demo-shot');
-  const prompt = trigger.querySelector('.infinity-demo-prompt');
+  const timeline = trigger.querySelector('.infinity-demo-timeline');
   const dialog = document.querySelector('.iv-dialog');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const shots = demo.shots || [];
@@ -14,16 +13,19 @@
   let inView = true;
   let opening = false;
 
-  const stamp = time => `${Math.floor(time / 60)}:${String(Math.floor(time % 60)).padStart(2, '0')}`;
-  const clean = text => String(text || '').replace(/^\s*<(?:shot|chunk)_\d+>\s*<[^>]+>\s*/, '');
-  const syncPrompt = () => {
+  const segments = shots.map(shot => {
+    const segment = document.createElement('span');
+    segment.className = 'infinity-demo-segment';
+    segment.style.flexGrow = String(Math.max(0.01, Number(shot.end) - Number(shot.start)));
+    timeline?.append(segment);
+    return segment;
+  });
+  const syncTimeline = () => {
     const time = preview.currentTime || 0;
     const index = shots.findIndex((shot, i) => time >= shot.start && (time < shot.end || i === shots.length - 1));
     if (index < 0 || index === activeShot) return;
     activeShot = index;
-    const shot = shots[index];
-    shotLabel.textContent = `SHOT ${String(shot.index ?? index + 1).padStart(2, '0')} · ${stamp(shot.start)}–${stamp(shot.end)}`;
-    prompt.textContent = clean(shot.prompt_en || shot.prompt_zh);
+    segments.forEach((segment, i) => segment.classList.toggle('is-active', i === index));
   };
 
   const syncPlayback = () => {
@@ -36,9 +38,9 @@
 
   preview.muted = true;
   preview.autoplay = !motion.matches;
-  preview.addEventListener('timeupdate', syncPrompt);
-  preview.addEventListener('seeked', syncPrompt);
-  preview.addEventListener('loadedmetadata', syncPrompt);
+  preview.addEventListener('timeupdate', syncTimeline);
+  preview.addEventListener('seeked', syncTimeline);
+  preview.addEventListener('loadedmetadata', syncTimeline);
   document.addEventListener('visibilitychange', syncPlayback);
   motion.addEventListener('change', () => {
     preview.autoplay = !motion.matches;
@@ -63,6 +65,6 @@
     }
   });
   dialog?.addEventListener('close', syncPlayback);
-  syncPrompt();
+  syncTimeline();
   syncPlayback();
 })();
