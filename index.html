@@ -164,24 +164,6 @@
           </li>
           <li class="pub-item">
             <div class="pub-image">
-              <video width="250" autoplay loop muted playsinline controls preload="metadata">
-                <source src="images/actalign.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div class="pub-content">
-              <div class="pub-title">ActAlign: Action-Aware Representation Alignment for Generalizable Vision-Language-Action Models</div>
-              <div class="meta">Yiyuan Yang, Guodong Long, <strong>Xiangpeng Yang</strong>, Dikai Liu, Qinghua Lu, Jing Jiang</div>
-              <div class="meta" style="margin-bottom: 6px;"><strong>AAAI Conference on Artificial Intelligence (AAAI)</strong>, 2027 (In Submission)</div>
-              <div class="meta" style="margin-bottom: 12px; font-weight: 500;"><strong>TL;DR</strong>: Action-aware representation alignment for generalizable embodied VLA models.</div>
-              <div class="pub-links">
-                <a href="papers/actalign.pdf" target="_blank">Paper</a>
-                <a href="images/actalign.mp4" target="_blank">Demo</a>
-              </div>
-            </div>
-          </li>
-          <li class="pub-item">
-            <div class="pub-image">
               <video width="250" autoplay loop muted playsinline style="border-radius: 12px; object-fit: cover;">
                 <source src="images/videograin.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -203,6 +185,24 @@
                 <a class="github-stars" href="https://github.com/knightyxp/VideoGrain" target="_blank">
                   <img src="https://img.shields.io/github/stars/knightyxp/VideoGrain?style=social" alt="GitHub Stars" class="github-badge">
                 </a>
+              </div>
+            </div>
+          </li>
+          <li class="pub-item">
+            <div class="pub-image">
+              <video width="250" autoplay loop muted playsinline controls preload="metadata" data-speed="8">
+                <source src="images/actalign.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="pub-content">
+              <div class="pub-title">ActAlign: Action-Aware Representation Alignment for Generalizable Vision-Language-Action Models</div>
+              <div class="meta">Yiyuan Yang, Guodong Long, <strong>Xiangpeng Yang</strong>, Dikai Liu, Qinghua Lu, Jing Jiang</div>
+              <div class="meta" style="margin-bottom: 6px;"><strong>Conference on Computer Vision and Pattern Recognition (CVPR)</strong>, 2027 (In Submission)</div>
+              <div class="meta" style="margin-bottom: 12px; font-weight: 500;"><strong>TL;DR</strong>: Action-aware representation alignment for generalizable embodied VLA models.</div>
+              <div class="pub-links">
+                <a href="papers/actalign.pdf" target="_blank">Paper</a>
+                <a href="images/actalign.mp4" target="_blank">Demo</a>
               </div>
             </div>
           </li>
@@ -372,6 +372,18 @@
           avatarFlip.setAttribute('aria-label', isFlipped ? 'Show Summer Me' : 'Show Winter Me');
         });
       }
+
+      // Play demo videos faster where data-speed is set (e.g. data-speed="2")
+      document.querySelectorAll('video[data-speed]').forEach((video) => {
+        const rate = parseFloat(video.dataset.speed) || 1;
+        const applyRate = () => {
+          video.defaultPlaybackRate = rate;
+          video.playbackRate = rate;
+        };
+        applyRate();
+        video.addEventListener('loadedmetadata', applyRate);
+        video.addEventListener('play', applyRate);
+      });
 
       // Click a publication thumbnail to view it larger
       const mediaModal = document.getElementById('media-modal');
